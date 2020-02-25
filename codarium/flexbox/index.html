@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Green Black</title>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+		<header class="container__header header">
+			<div class="header__logo logo">
+				<h1 class="logo__titel">Green Black</h1>
+				<p class="logo__text">Adapted by Vlad Batrak</p>
+			</div>
+			<nav class="header__main-navbar main-navbar">
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+				</ul>
+			</nav>
+		</header>
+		<div class="container__wrapper wrapper">
+			<aside class="wrapper__sidebar sidebar">
+				<ul>
+					<li>  <!-- Menu -->
+						<div class="sidebar__window window">
+							<div class="window__titel">Main menu</div>
+							<nav class="sidebar__navbar navbar">
+								<ul>
+									<li><a href="#">Home page</a></li>
+									<li><a href="#">About us</a></li>
+									<li><a href="#">Feedback</a></li>
+									<li><a href="#">News</a></li>
+								</ul>
+							</nav>
+						</div>
+					</li>
+					<li>   <!-- Login -->
+						<div class="sidebar__window window">
+							<div class="window__titel">Login</div>
+							<form class="sidebar__login login" id="login-form" accept-charset="UTF-8" action="" onsubmit="return false;">
+								<div class="form-row">
+								  	<label class="login__field-name" for="email">E-mail: </label>
+								  	<input class="login__field" type="email" name="email" tabindex="1" required>
+								</div>
+								<div class="form-row">
+								  	<label class="login__field-name" for="password">Password: </label> 
+									<input class="login__field" type="password" name="password" maxlength="8" tabindex="2" required>
+								</div>
+								<div class="form-row">
+									<label>
+										<input class="login__checkbox" type="checkbox" name="remember-me" tabindex="3" checked>
+										&nbsp;Remember me
+									</label>
+									<input class="login__submit" type="submit" value="Login" tabindex="4" onclick=show_user()>
+								</div>
+								<div class="form-row row-footer">
+									<label>[&emsp; </label>
+									<a href="#">Forgot password?</a>
+									<label>&emsp;|&emsp; </label>
+									<a href="#">Registration</a>
+									<label>&emsp;]</label>
+								</div>
+							</form>
+							<div class="user" id="user" hidden>
+								<img class="user-photo" src="img/user.png">
+								<h1 class=user-name>User X</h1>
+							</div>
+						</div>
+					</li>
+					<li>   <!-- poll -->
+						<div class="sidebar__window window">
+							<div class="window__titel">Our poll</div>
+							<form class="sidebar__poll poll" id="poll-form" accept-charset="UTF-8" action="" onsubmit="return false;">
+								<div class="form-row">
+									<ul> <label>Please rate our website:</label>
+										<li>
+											<label class="poll__radio-description">
+												<input class="poll__radio" type="radio" name="remember-me" tabindex="1" checked> Excellent
+											</label>
+										</li>
+										<li>
+											<label class="poll__radio-description">
+												<input class="poll__radio" type="radio" name="remember-me" tabindex="2"> Good
+											</label>
+										</li>
+										<li>
+											<label class="poll__radio-description">
+												<input class="poll__radio" type="radio" name="remember-me" tabindex="3"> Average
+											</label>
+										</li>
+										<li>
+											<label class="poll__radio-description">
+												<input class="poll__radio" type="radio" name="remember-me" tabindex="4"> Poor
+											</label>
+										</li>
+										<li>
+											<label class="poll__radio-description">
+												<input class="poll__radio" type="radio" name="remember-me" tabindex="5"> Terrible
+											</label>
+										</li>
+									</ul>
+								</div>
+								<div class="form-row row-footer">
+									<input class="poll__submit" type="submit" value="Rate" tabindex="6" onclick=set_rate()>
+								</div>
+								<div class="form-row row-footer">
+									<label>[&emsp; </label>
+									<a href="#">Results</a>
+									<label>&emsp;|&emsp; </label>
+									<a href="#">Poll archive</a>
+									<label>&emsp;]</label>
+								</div>
+								<div class="form-row row-footer">
+									<label>Total answers <span class="total" id="total">0</span></label>
+								</div>
+							</form>
+						</div>
+					</li>
+				</ul>
+			</aside>
+			<main class="wrapper__content content">
+				<article>
+					<div class="content__window window">
+						<div class="window__titel">News #1</div>
+						<img src="img/images.jpg">
+						<a class="window__button button-detail" href="#">Detail</a>
+					</div>
+				</article>
+				<article>
+					<div class="content__window window">
+						<div class="window__titel">News #2</div>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						<a class="window__button button-detail" href="#">Detail</a>
+					</div>
+				</article>
+			</main>
+		</div>
+		<footer class="container__footer footer">
+			<div class="footer__tabs">
+				<div class="footer__field">
+					<ul>
+						<li>Adapted by <b>Vlad Batrak</b></li>
+						<li>Copiright &copy 2020 <b>Your Company Name</b></li>
+						<li><b>Website Templates</b> by <b>Free CSS Templates</b></li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+	</div>
+</body>
+
+<script type="text/javascript">
+	function show_user() {
+		document.getElementById('login-form').style.display = 'none';
+		document.getElementById('user').style.display = 'flex';
+	}
+
+	function set_rate() {
+		var total = document.getElementById('total').textContent;
+		document.getElementById('total').textContent = String(Number(total)+1);
+	}
+
+</script>
+
+
+</html>
