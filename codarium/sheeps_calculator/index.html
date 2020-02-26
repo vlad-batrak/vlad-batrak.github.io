@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="UTF-8">
+	<title>Калькулятор баранчиків</title>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+
+<body>
+	<header>
+		<h1>Коли приходить безсоння, треба рахувати баранчиків!</h1>
+	</header>
+	<main class="container"> <!-- Бекграунд із місяцем на небі -->
+		<div class="calc-panel">
+			<form action="" onsubmit="return false;">
+				<fieldset>
+					<legend>&nbsp; Калькулятор баранчиків &nbsp;</legend>
+					<input type="text" class="num-input" id="x-number" min="0" max="9" maxlength="1" pattern="\d" placeholder="Введіть від 0 до 9" tabindex="0">
+					<select id="operator" tabindex="1">
+						<option>X + Y -- додати</option>
+						<option>X - Y -- відійняти</option>
+						<option>X * Y -- помножити</option>
+						<option>X / Y -- поділити</option>
+						<option>X ** Y -- в ступінь</option>
+						<option>X // Y -- націло</option>
+						<option>X % Y -- залишок</option>
+					</select>
+					<input type="text" class="num-input" id="y-number" min="0" max="9" maxlength="1" pattern="\d" placeholder="Введіть від 0 до 9" tabindex="2">
+				</fieldset>
+				<button onclick=calc() tabindex="3">Порахувати</button>
+				<fieldset id="result-panel">
+					<legend>&nbsp; Результат: &nbsp;</legend>
+					<output id="result">...</output>
+				</fieldset>
+			</form>
+		</div>
+		<!-- Поле з баранчиками -->
+		<div id="field"></div>
+		<!-- Футер з вовком на бекграунді -->
+		<footer>
+			<p>&copy; 2020, Vlad Batrak</p>
+			<div id="bubbles"></div>
+		</footer>
+	</main>
+</body>
+
+
+
+<script type="text/javascript">
+		
+	// Основна функція обчислення, що викликається за натисканням кнопки
+	function calc() {
+		var x_num = Number(document.getElementById("x-number").value);
+		var y_num = Number(document.getElementById("y-number").value);
+		var oper_num = Number(document.getElementById("operator").selectedIndex); 
+		var res;
+		// в залежності від індексу обраного пункту з випадаючого списку
+		switch (oper_num) {
+			case 0: 
+				res = sum(x_num,y_num);
+				break;
+			case 1: 
+				res = subtr(x_num,y_num); 
+				break;
+			case 2: 
+				res = multipl(x_num,y_num); 
+				break; 
+			case 3: 
+				if (y_num != 0) res = div(x_num,y_num);
+				break;
+			case 4: 
+				res = pow(x_num,y_num); 
+				break; 
+			case 5: 
+				if (y_num != 0) res = int_div(x_num,y_num); 
+				break;
+			case 6: 
+				if (y_num != 0) res = mod(x_num,y_num); 
+				break;
+		}
+		// Показуємо результат
+		document.getElementById('result').textContent = String(res);
+		document.getElementById('result-panel').style.display = "block";
+		// Показуємо пузир думки
+		if (res == undefined) msg("Математично обчислити кількість баранчиків не можливо!<br>Невдала спроба ділення на 0...");
+		else show_bubbles(res);
+	}
+	// додати
+	function sum(x,y) {
+		return x + y;
+	}
+	// відійняти
+	function subtr(x,y) {
+		return x - y;
+	}
+	// помножити
+	function multipl(x,y) {
+		return x * y;
+	}
+	// поділити
+	function div(x,y) {
+		return x / y;
+	}	
+	// піднести у ступінь
+	function pow(x,y) {
+		return x ** y;
+	}
+	// поділити націло
+	function int_div(x,y) {
+		return Math.trunc(x / y);
+	}
+	// знайти залишок
+	function mod(x,y) {
+		return x % y;
+	}
+
+	// функція сповіщення
+	function msg(str) {
+		document.getElementById('field').innerHTML = '<div class="sheep"><img src="img/sheep2.png"></div><p>'+ str +'</p>';
+
+		document.getElementById('field').style.display = "flex";
+		document.getElementById('bubbles').style.visibility = "visible";
+	}
+
+	function show_bubbles(x) {
+
+		if (x)  { // Якщо в результаті будь-яке число, крім нуля
+
+			// Малюємо баранчиків
+			var sheeps;
+
+			// задаємо вигляд баранчиків у залежності від того який результат: позитивний чи негативний
+			if (x > 0) sheeps = "img/sheep.png";
+			if (x < 0) sheeps = "img/sheep_black.png";
+
+			document.getElementById('field').innerHTML = ''; // обнуляємо
+			// в циклі додаємо потрібну кількість баранчиків
+			for (var i = 0; i < Math.floor(Math.abs(x)); i++) {
+				document.getElementById('field').innerHTML += '<div class="sheep"><img src='+ sheeps +'></div>';
+			}
+			// Якщо є дробний залишок, то додаємо ще й шашлик:
+				// Math.ceil(x) - округлюємо до цілого у більший бік
+				// Math.floor(x) - округлюємо до цілого у менший бік
+				// різниця між ними і буде наш залишок
+			if (Math.ceil(x) - Math.floor(x)) // якщо залишок є
+				document.getElementById('field').innerHTML += '<div class="sheep"><img src="img/kebab.png"></div>';
+			
+			// Показуємо поле з баранчиками і бульбашки думок
+			document.getElementById('field').style.display = "flex";
+			document.getElementById('bubbles').style.visibility = "visible";
+		}
+		else { // Якщо результат дорівнює нулю
+			msg("Результат нульовий. Нажаль вільних баранчиків зараз немає!");
+		}
+	}
+
+</script>
+
+</html>
