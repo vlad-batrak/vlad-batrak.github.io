@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Работа с JSON и API</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body onload="getLastOptions()" onunload="setLastOptions()">
+	<header>
+		<div class="container">
+			<h1>Работа с json-файлами и API-сервисами</h1>
+			<h3>Прогноз погоды от <a href="https://openweathermap.org/forecast16">openweathermap.org</a></h3>
+			<form action="" onsubmit="return false;">
+				<input type="text" id="city" placeholder="Введите название города" tabindex="0"><br>
+				<label>Количество дней: <input type="number" id="days" value="7" min="1" max="16" maxlength="1" pattern="\d" tabindex="1"> (от 1 до 16)</label><br>
+				<button onclick=getForecast()>Получить прогноз</button>
+			</form>
+		</div>
+	</header>
+	<main>
+		<div class="container" id="main_container"></div>
+	</main>
+
+	<script src="js/scripts.js"></script>
+
+</body>
+</html>
